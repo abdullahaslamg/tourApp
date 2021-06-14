@@ -10,7 +10,7 @@ const tourSchema = new mongoose.Schema(
       unique: true,
       trim: true,
       maxlength: [40, 'A tour must have length less or equal to 40'],
-      minlength: [10, 'A tour must have length more or equal to 10'],
+      minlength: [10, 'A tour must have length more or equal to 10']
       // validate: [validator.isaplha, 'Tour name can only contains characters']
     },
     duration: {
@@ -75,7 +75,7 @@ const tourSchema = new mongoose.Schema(
     startDates: [Date],
     secretTour: {
       type: Boolean,
-      default: true
+      default: false
     }
   },
   {
