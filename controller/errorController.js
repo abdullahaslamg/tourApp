@@ -7,7 +7,7 @@ const handleCastError = err => {
 
 const handleDuplicateError = err => {
   // const value = err.message.match(/(["'])(?:(?=(\\?))\2.)*?\1/);
-  const value = err.keyValue.name;
+  const value = Object.values(err.keyValue)[0];
   const message = `"${value}" already exists, tryAnother one`;
   return new AppError(message, 400);
 };
