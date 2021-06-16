@@ -20,8 +20,13 @@ const handleValidationError = err => {
   return new AppError(message, 400);
 };
 
+const handleJWTError = () => new AppError('Invlaid token, please login again');
+const handleJWTExpired = () =>
+  new AppError('You session has been expired, please login again', 401);
+
 // Sending Developer mode error
 const sendErrorDev = (err, res) => {
+  console.log(err);
   res.status(err.statusCode).json({
     status: err.status,
     error: err,
@@ -61,6 +66,8 @@ module.exports = (err, req, res, next) => {
     if (err.name === 'CastError') error = handleCastError(error);
     if (err.code === 11000) error = handleDuplicateError(error);
     if (err.name === 'ValidationError') error = handleValidationError(error);
+    if (err.name === 'JsonWebTokenError') error = handleJWTError();
+    if (err.name === 'TokenExpiredError') error = handleJWTExpired();
     sendErrorProd(error, res);
   }
 };

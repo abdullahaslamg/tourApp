@@ -5,11 +5,11 @@ const authController = require('./../controller/authController');
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router
-  .route('/api/v1/users')
+  .route('/')
   .get(userController.getAllUsers)
   .all(userController.createUser);
 router
-  .route('/api/v1/users/:id')
+  .route('/:id')
   .get(userController.getUser)
   .patch(userController.updateUser)
   .delete(userController.deleteUser);
