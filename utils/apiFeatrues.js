@@ -13,7 +13,7 @@ class ApiFeatures {
     // Advanced Filtering
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gt|gte|lt|lte)\b/g, match => {
-      console.log(match);
+      // console.log(match);
       return `$${match}`;
     });
     // let query = Tour.find(JSON.parse(queryStr));

@@ -51,7 +51,10 @@ userSchema.pre('save', async function(next) {
   // if the user changes only the email and we don't
   //want to modifiy password again
   // only run this function if password was actually modified
-  if (!this.isModified('password')) return next();
+  if (!this.isModified('password')) {
+    console.log('password is not modefied');
+    return next();
+  }
 
   // Hash the password with th cost of 12
   this.password = await bcrypt.hash(this.password, 12);
